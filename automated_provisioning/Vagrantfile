@@ -2,14 +2,14 @@ Vagrant.configure("2") do |config|
 
 ### Master Node ###
   config.vm.define "masternode" do |masternode|
-    masternode.vm.box = "ubuntu/bionic64"
+    masternode.vm.box = "ubuntu/jammy64"
     masternode.vm.hostname = "masternode"
     masternode.vm.network "private_network", ip: "192.168.56.17"
     masternode.vm.provider "virtualbox" do |vb|
       vb.gui = true
-      vb.memory = "1024"
+      vb.memory = "1000"
     masternode.vm.provision "shell", path: "lamp.sh" 
-    masternode.vm.provision "shell", path: "user.sh" 
+  # masternode.vm.provision "shell", path: "user.sh" 
   # masternode.vm.provision "shell", path: "key.sh"
   # masternode.vm.provision "shell", path: "copy.sh"
   # masternode.vm.provision "shell", path: "ps.sh"
@@ -24,19 +24,20 @@ Vagrant.configure("2") do |config|
     slavenode.vm.network "private_network", ip: "192.168.56.18"
     slavenode.vm.provider "virtualbox" do |vb|
       vb.gui = true
-      vb.memory = "1024"
+      vb.memory = "1000"
     slavenode.vm.provision "shell", path: "lamp.sh" 
     end
   end
 
-# ### Load Balancer ###
-# config.vm.define "loadbalancer" do |loadbalancer|
-#   loadbalancer.vm.box = "ubuntu/jammy64"
-#   loadbalancer.vm.hostname = "loadbalancer"
-# loadbalancer.vm.network "private_network", ip: "192.168.56.13"
-# loadbalancer.vm.provider "virtualbox" do |vb|
-#     vb.gui = true
-#     vb.memory = "1024"
-#   end
-#   loadbalancer.vm.provision "shell", path: "nginx.sh" 
+### Load Balancer ###
+  config.vm.define "loadbalancer" do |loadbalancer|
+    loadbalancer.vm.box = "ubuntu/jammy64"
+    loadbalancer.vm.hostname = "loadbalancer"
+    loadbalancer.vm.network "private_network", ip: "192.168.56.13"
+    loadbalancer.vm.provider "virtualbox" do |vb|
+      vb.gui = true
+      vb.memory = "600"
+   # loadbalancer.vm.provision "shell", path: "nginx.sh" 
+    end
+  end
 end

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # installing nginx
 apt update
 apt install nginx-y

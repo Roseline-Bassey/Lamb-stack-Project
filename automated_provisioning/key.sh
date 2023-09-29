@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Define variables
 MASTER_USER="altschool"
 SLAVE_IP="192.168.56.18" 
